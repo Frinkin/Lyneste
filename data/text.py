@@ -1,12 +1,13 @@
 #!/usr/bin/python3.4
-import pygame, sys
 from data.core_funcs import *
-#định nghĩa load hình ảnh font chữ muốn xử dụng
+
+
+# định nghĩa load hình ảnh font chữ muốn xử dụng
 def load_font_img(path, font_color):
-    fg_color = (255, 0, 0)                                                                  #màu chữ
-    bg_color = (0, 0, 0)                                                                    #màu nền (rỗng)
-    font_img = pygame.image.load(path).convert()                                            #convert thành img thuộc thư viện pygame
-    font_img = swap_color(font_img, fg_color, font_color)                                   #đổi màu
+    fg_color = (255, 0, 0)  # màu chữ
+    bg_color = (0, 0, 0)  # màu nền (rỗng)
+    font_img = pygame.image.load(path).convert()  # convert thành img thuộc thư viện pygame
+    font_img = swap_color(font_img, fg_color, font_color)  # đổi màu
     last_x = 0
     letters = []
     letter_spacing = []
@@ -20,11 +21,16 @@ def load_font_img(path, font_color):
         letter.set_colorkey(bg_color)
     return letters, letter_spacing, font_img.get_height()
 
-#convert thành font chữ
-class Font():
+
+# convert thành font chữ
+class Font:
     def __init__(self, path, color):
         self.letters, self.letter_spacing, self.line_height = load_font_img(path, color)
-        self.font_order = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','.','-',',',':','+','\'','!','?','0','1','2','3','4','5','6','7','8','9','(',')','/','_','=','\\','[',']','*','"','<','>',';']
+        self.font_order = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
+                           'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
+                           'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '.', '-',
+                           ',', ':', '+', '\'', '!', '?', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '(', ')',
+                           '/', '_', '=', '\\', '[', ']', '*', '"', '<', '>', ';']
         self.space_width = self.letter_spacing[0]
         self.base_spacing = 1
         self.line_spacing = 2
